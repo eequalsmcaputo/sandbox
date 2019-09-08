@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pluto", "Pluto\Pluto.csproj", "{A093A7B3-00C0-44B0-AC4F-4AA4A5C0C639}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A093A7B3-00C0-44B0-AC4F-4AA4A5C0C639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A093A7B3-00C0-44B0-AC4F-4AA4A5C0C639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A093A7B3-00C0-44B0-AC4F-4AA4A5C0C639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A093A7B3-00C0-44B0-AC4F-4AA4A5C0C639}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A51BF0A-6BE8-4DC0-AD3F-6DD80082EF84}
+	EndGlobalSection
+EndGlobal
