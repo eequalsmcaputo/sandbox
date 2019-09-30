@@ -6,12 +6,7 @@
 
 <h2>Edit Page</h2>
 
-@if (TempData["SM"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SM"]
-    </div>
-}
+@Helpers.SuccessMessage(TempData)
 
 @using (Html.BeginForm())
 {

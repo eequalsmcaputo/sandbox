@@ -15,5 +15,7 @@ namespace CMSShoppingCart.Models.Data
         }
         public DbSet<PageDto> Pages { get; set; }
         public DbSet<SidebarDto> Sidebars { get; set; }
+        public DbSet<CategoryDto> Categories { get; set; }
+        public DbSet<ProductDto> Products { get; set; }
     }
 }

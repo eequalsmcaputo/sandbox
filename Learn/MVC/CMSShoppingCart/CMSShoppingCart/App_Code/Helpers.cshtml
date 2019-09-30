@@ -1,0 +1,11 @@
+﻿@using System.Web.Mvc
+
+@helper SuccessMessage(TempDataDictionary TempData)
+{
+    if (TempData["SM"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SM"]
+        </div>
+    }
+}

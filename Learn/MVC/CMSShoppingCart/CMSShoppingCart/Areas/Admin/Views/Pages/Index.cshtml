@@ -57,11 +57,6 @@ else
 @section Scripts {
     <script>
         $(function () {
-            $("a.delete").click(function () {
-                if (!confirm("Confirm page deletion?")) {
-                    return false;
-                }
-            });
             var filter = "table#pages tbody";
             $(filter).sortable({
                 items: "tr:not(.home)",
@@ -69,9 +64,16 @@ else
                 update: function () {
                     var ids = $(filter).sortable("serialize");
                     var url = "/admin/pages/ReorderPages";
+                    //console.log(typeof (ids));
                     $.post(url, ids, function (data) {
 
                     });
+                }
+            });
+
+            $("a.delete").click(function () {
+                if (!confirm("Confirm page deletion?")) {
+                    return false;
                 }
             });
         });
