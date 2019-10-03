@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CMSShoppingCart.Models.ViewModels.Cart.CartVM>
+
+@{
+    ViewBag.Title = "Cart Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (ViewBag.Message != null)
+{
+
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrdouctName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrdouctName)
+                </td>
+                <td @Html.Raw("class='qty" + item.ProductId.ToString() + "'")>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <img src="/images/upload/products/@item.ProductId/thumbs/@item.Image" />
+                </td>
+                <td>
+                    <a href="#" class="incrprod" data-id="@item.ProductId">+</a>
+                    <a href="#" class="decrprod" data-id="@item.ProductId">-</a>
+                    <a href="#" class="remprod" data-id="@item.ProductId">Remove</a>
+                </td>
+                <td @Html.Raw("class='total" + item.ProductId.ToString() + "'")>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="grandtotal"><b>Grand Total: </b>$<span>@ViewBag.GrandTotal</span></td>
+        </tr>
+    </table>
+
+}@section Scripts {
+    <script>
+        $(function () {
+            
+            setupQtyChanges("incr");
+            setupQtyChanges("decr");
+            setupRemoveProduct();
+        });
+
+        function setupRemoveProduct() {
+            $(".remprod").click(function (e) {
+                e.preventDefault();
+                
+                var $this = $(this);
+                var productId = $this.data("id");
+                
+                var urlName = "Remove";
+                var url = "/cart/" + urlName + "Product";
+
+                $.get(url, { productId: productId }, function (data) {
+                    location.reload();
+                });
+            });
+        }
+
+        function setupQtyChanges(changeType) {
+            var urlName;
+            var factor;
+
+            switch (changeType) {
+                case "incr":
+                    urlName = "Increment";
+                    factor = 1;
+                    break;
+                case "decr":
+                    urlName = "Decrement";
+                    factor = -1;
+                    break;
+                default:
+
+            }
+
+            $("a." + changeType + "prod").click(function (e) {
+                e.preventDefault();
+
+                var $this = $(this);
+                var productId = $this.data("id");
+                var url = "/cart/" + urlName + "Product";
+
+                $.getJSON(url, { productId: productId }, function (data) {
+                    
+                    if (data.qty === 0 && changeType === "decr") {
+                        $this.parent().parent().fadeOut("slow", function () {
+                            location.reload();
+                        });
+                    } else {
+                        $("td.qty" + productId).html(data.qty);
+                        var price = data.qty * data.price;
+                        var pricehtml = "$" + price.toFixed(2);
+
+                        $("td.total" + productId).html(pricehtml);
+
+                        var span = "td.grandtotal span";
+                        var gt = parseFloat($(span).text());
+                        var grandtotal = (gt + (factor * data.price)).toFixed(2);
+
+                        $(span).text(grandtotal);
+                    }
+                    
+                });
+            });
+
+            return true;
+        }
+    </script>
+}

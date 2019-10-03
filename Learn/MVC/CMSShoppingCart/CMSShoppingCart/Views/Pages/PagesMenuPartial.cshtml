@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CMSShoppingCart.Models.ViewModels.Pages.PageVM>
+
+@{ 
+    string tempPageTitle = (string)TempData["PageTitle"];
+}
+@foreach (var item in Model) {
+    string cls = "";
+    if(tempPageTitle == item.Title)
+    {
+        cls = "class=active";
+    }
+    <li @cls>
+        <a href="/@item.Slug">@item.Title</a>
+    </li>
+}
+

@@ -1,17 +1,17 @@
-﻿using CMSShoppingCart.Models.ViewModels.Shop;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CMSShoppingCart.Models.Data;
 using System.IO;
 using System.Web.Helpers;
+using CMSShoppingCart.Models.Data;
+using CMSShoppingCart.Models.ViewModels.Shop;
 using PagedList;
 
 namespace CMSShoppingCart.Areas.Admin.Controllers
 {
-    public class ShopController : Controller
+    public class ShopController : UtilityController
     {
         // GET: Admin/Shop
         [HttpGet]
@@ -249,7 +249,7 @@ namespace CMSShoppingCart.Areas.Admin.Controllers
                     db.Categories.ToList(), "Id", "Name");
 
                 model.GalleryImages = GetGalleryImages(id);
-
+                
             }
             
             return View(model);
@@ -412,14 +412,6 @@ namespace CMSShoppingCart.Areas.Admin.Controllers
             {
                 Directory.CreateDirectory(dir);
             }
-        }
-
-        private IEnumerable<string> GetGalleryImages(int id)
-        {
-            return Directory.EnumerateFiles(
-                    Server.MapPath("~/Images/Upload/Products/" +
-                        id.ToString() + "/Gallery/Thumbs"))
-                    .Select(fn => Path.GetFileName(fn));
         }
 
         private bool HasValidFileExtension(HttpPostedFileBase file)

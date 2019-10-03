@@ -1,0 +1,81 @@
+﻿@model CMSShoppingCart.Models.ViewModels.Shop.ProductVM
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h2>@Model.Name</h2>
+<div class="row">
+    <div class="col-xs-12 col-md-4">
+        <img src="/images/upload/products/@Model.Id/thumbs/@Model.ImageName" />
+    </div>
+    <div class="col-xs-12 col-md-8">
+        @Html.DisplayFor(model => model.Description)
+        <br />
+        $@Html.DisplayFor(model => model.Price)
+        <br />
+        <div class="addtocart">
+            <a href="#" class="addtocart">Add to Cart</a>
+            <span class="loader">
+                <img src="~/Content/img/ajax-loader.gif" />
+            </span>
+            <span class="ajaxmsg">
+                The product has been added to your cart.
+            </span>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <h3>Product Gallery</h3>
+    <div class="col-xs-12 fancyboxdiv">
+        <br /><br />
+        @foreach (var img in Model.GalleryImages)
+        {
+            <div style="display: inline-block">
+                <a class="fancybox" rel="gallery1" href="/images/upload/products/@Model.Id/Gallery/@img">
+                    <img src="/images/upload/proudcts/@Model.Id/Gallery/Thumbs/@img" />
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+@section Scripts {
+    <script src="~/Scripts/jquery.fancybox.js"></script>
+    <script>
+
+        $(function () {
+            // Fancybox
+            $(".fancybox").fancybox();
+
+
+            // Add to cart
+            $("a.addtocart").click(function (e) {
+                e.preventDefault();
+
+                var url = "/cart/AddToCartPartial";
+                var msg = "span.ajaxmsg";
+                var loader = "span.loader";
+
+                $(loader).addClass("ib");
+                
+                $.get(url, { id: @Model.Id }, function (data) {
+                    $(".ajaxcart").html(data);
+                }).done(function () {
+                    $(loader).removeClass("ib");
+                    $(msg).addClass("ib");
+                    setTimeout(function () {
+                        $(msg).fadeOut("slow");
+                        $(msg).removeClass("ib");
+                    });
+                });
+            });
+        });
+
+    </script>
+}
