@@ -8,9 +8,11 @@ using System.Web.Helpers;
 using CMSShoppingCart.Models.Data;
 using CMSShoppingCart.Models.ViewModels.Shop;
 using PagedList;
+using CMSShoppingCart.Areas.Admin.Models.ViewModels.Shop;
 
 namespace CMSShoppingCart.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ShopController : UtilityController
     {
         // GET: Admin/Shop
@@ -374,6 +376,45 @@ namespace CMSShoppingCart.Areas.Admin.Controllers
                     img.Save(path2);
                 }
             }
+        }
+
+        public ActionResult Orders()
+        {
+            List<OrdersForAdminVM> ordersForAdmin = new List<OrdersForAdminVM>();
+            using (DB db = new DB())
+            {
+                List<OrderDto> orders = db.Orders.ToList();
+                    //.Select(x => new OrderVM(x)).ToList();
+                foreach(var order in orders)
+                {
+                    Dictionary<string, short> productAndQty =
+                        new Dictionary<string, short>();
+
+                    decimal total = 0m;
+
+                    List<OrderDetailDto> orderDetList = db.OrderDetails
+                        .Where(x => x.OrderId == order.OrderId).ToList();
+
+                    string username = order.User.Username;
+
+                    foreach(var det in orderDetList)
+                    {
+                        var prod = db.Products.FirstOrDefault(p => p.Id == det.ProductId);
+                        productAndQty.Add(prod.Name, det.Quantity);
+                        total += prod.Price * det.Quantity;
+                    }
+
+                    ordersForAdmin.Add(new OrdersForAdminVM
+                    {
+                        OrderNumber = order.OrderId,
+                        Username = username,
+                        ProductAndQty = productAndQty,
+                        Total = total,
+                        CreateOn = order.CreatedOn
+                    });
+                }
+            }
+            return View(ordersForAdmin);
         }
 
         #region utilities

@@ -12,7 +12,7 @@ namespace CMSShoppingCart.Models.ViewModels.Cart
 
         [Display(Name = "Product Name")]
         public string PrdouctName { get; set; }
-        public int Quantity { get; set; }
+        public short Quantity { get; set; }
         public decimal Price { get; set; }
 
         public decimal Total {

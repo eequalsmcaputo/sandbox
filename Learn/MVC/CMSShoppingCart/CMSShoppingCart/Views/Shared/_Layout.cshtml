@@ -11,14 +11,49 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("CMS Shopping Cart", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("CMS Shopping Cart", "Index", "Home",
+                    new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-header">
+            <ul style="list-style-type: none" class="navbar-header">
                 @Html.Action("PagesMenuPartial", "Pages")
-            </div>
-            <ul class="navbar-right">
-                @Html.Action("CartPartial", "Cart")
+                @if (Request.IsAuthenticated)
+                {
+                    <li><a href="/account/logout">Log Out</a></li>
+                    if (User.IsInRole("User"))
+                    {
+                        <li>
+                            @Html.Action("UserNavPartial", "Account",
+                   new { area = "" })
+                    </li>
+                }
+            }
+            else
+            {
+                string active = "";
+                if (ViewBag.Title == "Login")
+                {
+                    active = "class=active";
+                }
+                <li @active><a href="/account/login">Log In</a></li>
+            }
             </ul>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <ul class="navbar-right">
+                    <li>@Html.ActionLink("Admin Area", "Index", "Dashboard",
+                        new { area = "Admin" }, null)</li>
+                </ul>
+            }
+            else
+            {
+                if(ViewBag.Title != "Cart Details")
+                {
+                    <ul class="navbar-right">
+                        @Html.Action("CartPartial", "Cart")
+                    </ul>
+                }
+            }
+
         </div>
     </div>
     <div class="container body-content">
@@ -46,7 +81,7 @@
         </div>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - CMS Shopping Cart</p>
         </footer>
     </div>
 

@@ -34,7 +34,7 @@ namespace CMSShoppingCart.Controllers
         public ActionResult CartPartial()
         {
             CartVM model = new CartVM();
-            int qty = 0;
+            short qty = 0;
             decimal price = 0m;
 
             if (Session["cart"] != null)
@@ -60,7 +60,7 @@ namespace CMSShoppingCart.Controllers
 
         public ActionResult AddToCartPartial(int id)
         {
-            List<CartVM> cart = Session["cart"] as List<CartVM> ?? new List<CartVM>();
+            List<CartVM> cart = Cart;
             CartVM model = new CartVM();
 
             using(DB db = new DB())
@@ -83,7 +83,7 @@ namespace CMSShoppingCart.Controllers
                     productInCart.Quantity++;
                 }
 
-                int qty = 0;
+                short qty = 0;
                 decimal price = 0m;
 
                 foreach(var item in cart)
@@ -113,7 +113,7 @@ namespace CMSShoppingCart.Controllers
 
         private JsonResult ChangeProductQty(int productId, QtyOps op)
         {
-            List<CartVM> cart = Session["cart"] as List<CartVM> ?? new List<CartVM>();
+            List<CartVM> cart = Cart;
             using (DB db = new DB())
             {
                 CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
@@ -129,10 +129,59 @@ namespace CMSShoppingCart.Controllers
 
         public void RemoveProduct(int productId)
         {
-            List<CartVM> cart = Session["cart"] as List<CartVM> ?? new List<CartVM>();
+            CartVM model = Cart.FirstOrDefault(x => x.ProductId == productId);
+            Cart.Remove(model);
+        }
 
-            CartVM model = cart.FirstOrDefault(x => x.ProductId == productId);
-            cart.Remove(model);
+        public ActionResult PaypalPartial()
+        {
+            return PartialView(Cart);
+        }
+
+        [HttpPost]
+        public void PlaceOrder()
+        {
+            List<CartVM> cart = Cart;
+            string username = User.Identity.Name;
+            int orderId;
+            using (DB db = new DB())
+            {
+                OrderDto order = new OrderDto();
+                var q = db.Users.FirstOrDefault(x => x.Username == username);
+                int userId = q.Id;
+
+                order.UserId = userId;
+                order.CreatedOn = DateTime.Now;
+                db.Orders.Add(order);
+                db.SaveChanges();
+                orderId = order.OrderId;
+
+                OrderDetailDto orderdet = new OrderDetailDto();
+                foreach (var item in cart)
+                {
+                    orderdet.OrderId = orderId;
+                    orderdet.ProductId = item.ProductId;
+                    orderdet.Quantity = item.Quantity;
+
+                    db.OrderDetails.Add(orderdet);
+                    db.SaveChanges();
+                }
+            }
+
+            SendTestEmail("admin@example.com", "admin@example.com",
+                "Order Completed", "Order ID: " + orderId.ToString());
+
+            Session["cart"] = null;
+        }
+
+        #region Utilities
+
+        private List<CartVM> Cart
+        {
+            get
+            {
+                return Session["cart"] as List<CartVM> ?? new List<CartVM>();
+            }
         }
 
         private enum QtyOps : byte
@@ -155,6 +204,8 @@ namespace CMSShoppingCart.Controllers
                     break;
             }
         }
+
+        #endregion
     }
 
 }
