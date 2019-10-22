@@ -184,7 +184,7 @@ namespace CMSShoppingCart.Areas.Admin.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     // Verify file extension
-                    if (!HasValidFileExtension(file))
+                    if (!HasImageFileExtension(file))
                     {
                         model.Categories = new SelectList(
                             db.Categories.ToList(), "Id", "Name");
@@ -296,7 +296,7 @@ namespace CMSShoppingCart.Areas.Admin.Controllers
 
                 if(file != null && file.ContentLength > 0)
                 {
-                    if(!HasValidFileExtension(file))
+                    if(!HasImageFileExtension(file))
                     {
                         ModelState.AddModelError("", "Invalid file extension.");
                         return View(model);
@@ -455,7 +455,7 @@ namespace CMSShoppingCart.Areas.Admin.Controllers
             }
         }
 
-        private bool HasValidFileExtension(HttpPostedFileBase file)
+        private bool HasImageFileExtension(HttpPostedFileBase file)
         {
             string ext = file.ContentType.ToLower();
             return !(ext != "image/jpg" &&

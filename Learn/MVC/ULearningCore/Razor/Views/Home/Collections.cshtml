@@ -1,0 +1,31 @@
+﻿@using Razor.Models
+@model Product[]
+@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+}
+<html>
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+    <body>
+        <div class="container">
+            <br /><br />
+
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                @foreach(Product product in Model) 
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>$@product.Price</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+</html>
+    

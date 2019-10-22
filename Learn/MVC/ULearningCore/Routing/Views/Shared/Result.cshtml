@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+    ViewData["Title"] = "Routing";
+}
+<html>
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+    <body>
+        <div class="container">
+            <br /><br />
+
+            <p><b>Controller: </b>@ViewBag.Controller</p>
+            <br />
+            <p><b>Action: </b>@ViewBag.Action</p>
+            <br />
+            @if(ViewBag.Id != null)
+            {
+            <p><b>ID: </b>@ViewBag.Id</p>
+            }
+            <br />
+            @if(ViewBag.All != null)
+            {
+            <p><b>All: </b>@ViewBag.All</p>
+            }
+            <hr />
+
+            <a href="/home/index">Home Index</a>
+            <br />
+            <a asp-controller="Home" asp-action="Index">Home Index</a>
+            <br />
+            <a asp-controller="Home" asp-action="Blog">Home Blog</a>
+            <br />
+            <a asp-controller="Admin" asp-action="Index">Admin Index</a>
+            <br />
+            <a asp-controller="Admin" asp-action="Index" asp-route-id="3">Third Segment</a>
+            <br />
+            <a asp-controller="Admin" asp-action="Index" asp-fragment="somefragment">Admin Index Fragment</a>
+            <br />
+            <div id="somefragment">Some Fragment</div>
+        </div>
+    </body>
+</html>
+    

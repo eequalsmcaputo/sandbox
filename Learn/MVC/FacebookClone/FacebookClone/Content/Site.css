@@ -1,24 +1,313 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.form-horizontal.loginform {
+    color: white !important;
+    position: relative;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.form-horizontal.loginform > div label {
+    color: white !important;
+    width: 100px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.form-horizontal.loginform > div.form-group {
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 10px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+img#profileimage {
+    width: 300px;
+}
+
+div.em {
+    position: absolute;
+    right: -330px;
+    bottom: -10px;
+    z-index: 1;
+    display: none;
+}
+
+#loginform {
+    position: relative;
+}
+
+#loginform .ajaxdiv {
+    position: absolute;
+    bottom: 30px;
+    right: -30px;
+}
+
+li.livesearch {
+    width: 300px;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+
+li.livesearch img {
+    width: 50px;
+}
+
+input#searchtext {
+    position: relative;
+    margin-top: 7px;
+    margin-left: 100px;
+    padding: 5px 10px;
+    top: -5px;
+}
+
+ul#livesearchul {
+    list-style-type: none;
+    position: absolute;
+    background: #222;
+    right: -10px;
+    top: 70px;
+    padding: 0;
+    z-index: 9;
+}
+
+ul#frnotifyul,
+ul#msgnotifyul {
+    z-index: 9;
+}
+
+ul#livesearchul li.close,
+ul#frnotifyul li.close,
+ul#msgnotifyul li.close {
+    position: absolute;
+    color: white;
+    opacity: 1 !important;
+    right: 10px;
+    list-style: none;
+    top: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.user-img img {
+    width: 200px;
+}
+
+li.name {
+    display: block;
+    color: white;
+    margin: 0 10px;
+    margin-top: 15px;
+}
+
+.frnotify {
+    color: white;
+    margin-top: 15px;
+}
+
+.frnotify.red,
+.msgnotify.red {
+    color: red;
+    cursor: pointer;
+}
+
+li.frcount {
+    position: relative;
+}
+
+ul#frnotifyul {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: #222;
+}
+
+li.frnotifyli img,
+li.msgnotifyli img {
+    position: relative;
+    width: 50px;
+}
+
+li.frnotifyli {
+    width: 300px;
+    display: block;
+    padding: 10px;
+    z-index: 10;
+}
+
+a.accept, a.decline {
+    z-index: 10;
+}
+
+.friends {
+    width: 150px;
+}
+
+li.msgcountli {
+    color: white;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+li.msgcountli span > span {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+li.msgnotifyli {
+    list-style: none;
+    width: 300px;
+    display: inline-block;
+    padding: 10px;
+}
+
+ul#msgnotifyul {
+    position: absolute;
+    padding: 0px;
+    background: #222;
+    right: -10px;
+    top: 30px;
+}
+
+.sendmsgparent {
+    width: 400px;
+    margin: 30px;
+    margin-left: 0px;
+}
+
+.wall textarea {
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+    border: 2px solid blue;
+}
+
+.ta,
+.ta:hover,
+.ta:focus {
+    display: block;
+    background: green;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.sendmsgparent img {
+    position: absolute;
+    bottom: 40px;
+    left: 100px;
+}
+
+.sendmsgnotify {
+    position: absolute;
+    bottom: 0px;
+    left: 100px;
+}
+
+img#imgpreview {
+    margin-top: 20px;
+}
+
+.wall {
+    position: relative;
+    bottom: 15px;
+}
+
+.friendwallimg {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.friendwall {
+    margin: 20px;
+}
+
+body > .chatbox {
+    position: absolute;
+    left: -3000px;
+}
+
+.chat {
+    position: fixed;
+    bottom: 0px;
+    right: 30px;
+}
+
+.chat ul li {
+    cursor: pointer;
+    margin: 10px;
+    list-style: none;
+    padding: 10px;
+}
+
+.chat ul li img {
+    width: 30px !important;
+}
+
+.chatboxholder {
+    position: fixed;
+    bottom: 0;
+    right: 130px;
+    width: 100%;
+    height: 50px;
+}
+
+.chatbox {
+    width: 300px;
+    height: 400px;
+    background: #222;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.chatbox h4 {
+    position: absolute;
+    top: -65px;
+    left: 0;
+    z-index: 5;
+    background: #222;
+    width: 100%;
+    padding: 5px;
+}
+
+.chatbox img {
+    width: 30px !important;
+    margin-bottom: 15px;
+    height: 30px;
+}
+
+.chatboxtext {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    background: white;
+    width: 90%;
+    height: 270px;
+    z-index: 1;
+    margin: 0 auto;
+    max-height: 270px;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.chattextarea {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    width: 90%;
+    height: 60px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+a.sendchat {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.chat ul li.msg {
+    background: green;
+    color: white;
 }

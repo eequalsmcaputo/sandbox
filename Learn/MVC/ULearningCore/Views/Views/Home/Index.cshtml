@@ -1,0 +1,12 @@
+﻿@model Views.Models.Fruit
+
+<p>The fruit is @Model.Name.</p>
+
+@Html.Partial("_SomePartial")
+@Html.Partial("_StronglyTypedPartial", new string[] { "apples", "bananas", "kiwis" })
+
+@section Scripts {
+    <script>
+        $("body").addClass("test");
+    </script>
+}

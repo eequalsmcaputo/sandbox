@@ -1,0 +1,9 @@
+﻿@helper ImageUpload(string labelText) {
+    <div class="form-group">
+        <label class="control-label col-md-2" for="imageupload">@labelText</label>
+        <div class="col-md-10">
+            <input type="file" name="file" id="imageupload" />
+            <img id="imgpreview" src="#" class="hide" />
+        </div>
+    </div>
+}

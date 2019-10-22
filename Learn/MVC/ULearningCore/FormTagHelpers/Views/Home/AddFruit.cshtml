@@ -1,0 +1,19 @@
+﻿@model Fruit
+
+@*<form method="post" action="/home/addfruit">*@
+<form method="post" asp-controller="Home" asp-action="AddFruit">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input class="form-control" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price">Price</label>
+        <input class="form-control" asp-for="Price" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Qty">Qty</label>
+        <input class="form-control" asp-for="Qty" />
+    </div>
+    <button class="btn btn-primary">Add</button>
+    <a asp-controller="home" asp-action="index">Cancel</a>
+</form>

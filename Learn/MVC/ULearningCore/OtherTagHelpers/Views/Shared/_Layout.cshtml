@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Other Tag Helpers</title>
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+    @*<link asp-href-include="/lib/bootstrap/dist/**/*.css" rel="stylesheet" />*@
+    @*<link asp-href-include="/lib/bootstrap/dist/**/*.css" 
+          asp-href-exclude="**.min.css"
+          rel="stylesheet" />*@
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css2" 
+          rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+          crossorigin="anonymous" 
+          asp-fallback-href-include="/lib/bootstrap/dist/**/*.css"
+          asp-fallback-test-class="btn"
+          asp-fallback-test-property="display"
+          asp-fallback-test-value="inline-block"/>
+</head>
+<body>
+    <div class="container">
+        <br /><br />
+
+        <environment names="development">
+            <div class="panel-body bg-info">Development</div>
+        </environment>
+        <environment names="production">
+            <div class="panel-body bg-danger">Production</div>
+        </environment>
+        @RenderBody()
+    </div>
+    @*<script asp-src-include="/lib/jquery/dist/**.js*"></script>*@
+    @*<script asp-src-include="/lib/jquery/dist/**.js*" asp-src-exclude="/lib/jquery/dist/**.min.js*"></script>*@
+    @*<script asp-src-include="/lib/jquery/dist/**.js*"
+        asp-src-exclude="/lib/jquery/dist/**.min.js*"
+        asp-append-version="true"></script>*@
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js2" 
+            asp-fallback-src="/lib/jquery/dist/**.min.js*"
+            asp-fallback-test="window.jQuery"></script>
+</body>
+</html>
