@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TypeScript</title>
+    </head>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <!--Order matters when referencing other files!
+    <script src="06lesson_circle.js"></script>
+    <script src="06lesson_rectangle.js"></script>
+    <script src="06lesson.js"></script>-->
+    <!--<script src="11lesson.js"></script>-->
+    <body>
+        <div id="app">Change this with jQuery</div>
+        <script>
+            SystemJS.config({
+                map: {
+                    "jQuery": "node_modules/jquery/dist/jquery.min.js"
+                },
+                baseURL: '/',
+                defaultExtension: "js"
+            });
+            SystemJS.import('/11lesson.js');
+        </script>
+    </body>
+</html>
