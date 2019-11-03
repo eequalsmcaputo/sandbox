@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name = 'Mike';
+  paraVisible: boolean = false;
+  clickCount: number = 0;
+  clicks = [];
+
+  displayDetails() {
+    this.paraVisible = !this.paraVisible;
+    /* this.clickCount += 1;
+    this.clicks.push(this.clickCount); */
+    this.clicks.push(new Date());
+  }
 }
