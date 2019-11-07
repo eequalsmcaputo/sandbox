@@ -1,0 +1,11 @@
+<div 
+  class="panel panel-default">
+  <!-- <div class="panel-heading">{{ element.name }}</div> -->
+  <div class="panel-heading" #heading>{{ name }}</div>
+  <div class="panel-body">
+    <!-- Hook for content between opening and closing
+      tags of this component's tag in parent
+      component -->
+    <ng-content></ng-content>
+  </div>
+</div>
