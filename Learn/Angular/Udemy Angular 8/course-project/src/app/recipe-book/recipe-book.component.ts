@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { RecipesService } from './recipes.service';
 
 @Component({
   selector: 'app-recipe-book',
-  templateUrl: './recipe-book.component.html'
+  templateUrl: './recipe-book.component.html',
+  styleUrls: ['./recipe-book.component.css'],
+  providers: [RecipesService]
 })
 export class RecipeBookComponent {
   selectedRecipe: Recipe;
 
-  onListItemClicked = (recipe: Recipe) => {
-      this.selectedRecipe = recipe;
-      console.log(recipe.name);
-    }
+  constructor(private recipesService: RecipesService) {}
 }
-

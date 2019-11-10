@@ -2,7 +2,6 @@
   <div class="col-xs-12">
     <button 
       class="btn btn-success"
-      (click)="addRecipe()"
       >New Recipe</button>
   </div>
 </div>
@@ -12,7 +11,6 @@
     <app-recipe-item
       *ngFor="let recipe of recipes"
       [recipe]="recipe"
-      (clicked)="onItemClicked(recipe)"
       ></app-recipe-item>
   </div>
 </div>
