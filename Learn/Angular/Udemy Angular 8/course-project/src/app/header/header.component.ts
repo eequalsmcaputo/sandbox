@@ -16,19 +16,15 @@ export class HeaderComponent {
   collapsed = true;
 
   @Output()
-  menuFired = new EventEmitter<{
-    source: EventSource
-  }>();
+  menuFired = new EventEmitter<EventSource>();
 
   onClickRecipes = (event: Event) => {
     event.preventDefault();
-    this.menuFired.emit({
-      source: EventSource.Recipes});
+    this.menuFired.emit(EventSource.Recipes);
   }
 
   onClickShoppingList = (event: Event) => {
     event.preventDefault();
-    this.menuFired.emit({
-      source: EventSource.ShoppingList});
+    this.menuFired.emit(EventSource.ShoppingList);
   }
 }

@@ -1,17 +1,16 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Ingredient } from 'src/app/shared/ingredient.model';
+import { Component } from '@angular/core';
+import { ShoppingListService } from '../shopping-list.service';
 
 @Component({
     selector: 'app-list-edit',
     templateUrl: './list-edit.component.html'
 })
 export class ListEditComponent {
-  @Output()
-  ingredientAdded = new EventEmitter<Ingredient>();
+  constructor(public readonly shoppingListService:
+    ShoppingListService) {
+  }
 
   addIngredient(name: string, qty: number) {
-    const ingredient = new Ingredient(name, qty);
-    this.ingredientAdded.emit(ingredient);
+    this.shoppingListService.addIngredient(name, qty);
   }
 }
-

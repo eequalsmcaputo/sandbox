@@ -8,11 +8,11 @@ import { EventSource } from './header/header.component';
 })
 export class AppComponent {
   title = 'course-project';
-  currentSelection: EventSource;
+  currentSelection: EventSource = EventSource.Recipes;
 
-  onMenuFired(eventData: { source: EventSource}) {
-    console.log(eventData.source);
-    this.currentSelection = eventData.source;
+  onMenuFired(eventData: EventSource) {
+    console.log(eventData);
+    this.currentSelection = eventData;
   }
 
   isRecipesSelected() {
