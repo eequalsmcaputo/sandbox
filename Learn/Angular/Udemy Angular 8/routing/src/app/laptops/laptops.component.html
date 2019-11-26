@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <label for="laptopname">Laptop Name</label><br/>
+    <input type="text" id="laptopname" /><br/>
+    <button 
+      class="btn btn-primary"
+      (click)="onSearch()">Search</button>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+      <router-outlet></router-outlet>
+  </div>
+</div>
