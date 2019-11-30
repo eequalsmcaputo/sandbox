@@ -20,6 +20,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServerResolver } from './servers/server/server-resolver.service';
 import { LaptopsComponent } from './laptops/laptops.component';
 import { LaptopComponent } from './laptops/laptop/laptop.component';
+import { LaptopsService } from './laptops/laptops.service';
+import { LaptopResolver } from './laptops/laptop/laptop-resolver.service';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { LaptopComponent } from './laptops/laptop/laptop.component';
     AuthService,
     AuthGuard,
     CanDeactivateGuard,
-    ServerResolver
+    ServerResolver,
+    LaptopsService,
+    LaptopResolver
   ],
   bootstrap: [AppComponent]
 })

@@ -40,7 +40,14 @@ const appRoutes: Routes = [
   {
     path: 'laptops',
     canActivate: [AuthGuard],
-    component: LaptopsComponent
+    component: LaptopsComponent,
+    children: [
+      {
+        path: ':display',
+        component: LaptopComponent,
+        resolve: {laptop: LaptopResolver}
+      }
+    ]
   },
   // { path: 'not-found', component: PageNotFoundComponent },
   { path: 'not-found', component: ErrorPageComponent,
