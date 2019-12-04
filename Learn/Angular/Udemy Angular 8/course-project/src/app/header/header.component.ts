@@ -1,12 +1,6 @@
 import {
-  Component,
-  Output,
-  EventEmitter } from '@angular/core';
-
-export enum EventSource {
-    Recipes,
-    ShoppingList
-  }
+  Component
+} from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -14,17 +8,4 @@ export enum EventSource {
 })
 export class HeaderComponent {
   collapsed = true;
-
-  @Output()
-  menuFired = new EventEmitter<EventSource>();
-
-  onClickRecipes = (event: Event) => {
-    event.preventDefault();
-    this.menuFired.emit(EventSource.Recipes);
-  }
-
-  onClickShoppingList = (event: Event) => {
-    event.preventDefault();
-    this.menuFired.emit(EventSource.ShoppingList);
-  }
 }

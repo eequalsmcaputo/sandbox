@@ -35,4 +35,12 @@ export class RecipesService {
   getRecipesCopy() {
     return this.recipes.slice();
   }
+
+  find(recipeName: string) {
+    return this.recipes.find(
+      (r) => {
+        return r.name === recipeName;
+      }
+    );
+  }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EventSource } from './header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +7,8 @@ import { EventSource } from './header/header.component';
 })
 export class AppComponent {
   title = 'course-project';
-  currentSelection: EventSource = EventSource.Recipes;
 
-  onMenuFired(eventData: EventSource) {
-    console.log(eventData);
+  /*onMenuFired(eventData: EventSource) {
     this.currentSelection = eventData;
   }
 
@@ -23,5 +20,5 @@ export class AppComponent {
   isShoppingListSelected() {
     return (this.currentSelection ===
       EventSource.ShoppingList);
-  }
+  }*/
 }
