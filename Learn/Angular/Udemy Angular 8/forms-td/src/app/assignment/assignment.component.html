@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form
+        #f="ngForm"
+        >
+        <p *ngIf="!f.valid && f.touched">Form is invalid</p>
+        <label for="email">Email: </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+          email
+          class="form-control"
+          />
+        <p *ngIf="!email.valid && email.touched">Email address is invalid</p>
+        <label for="password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          required
+          class="form-control"
+          />
+        <p *ngIf="!password.valid && password.touched">Password is invalid</p>
+        <select
+          id="subscription"
+          name="subscription"
+          [ngModel]="defaultSubscription"
+          class="form-control"
+          >
+          <option value="basic">Basic</option>
+          <option value="advanced">Advanced</option>
+          <option value="pro">Pro</option>
+        </select>
+        <button
+          (click)="onSubmit()"
+          type="submit"
+          [disabled]="!f.valid"
+          class="btn btn-primary"
+          >Submit</button>
+      </form>
+      <!-- Add a Form with the following Inputs (and Validators)
+           1) Mail address (should not be empty and should be an email address)
+           2) A Dropdown which allows the user to select from three different 
+              subscriptions ("Basic", "Advanced", "Pro")
+              Set "Advanced" as Default
+           3) A Password field (should not be empty)
+           4) A Submit Button
+
+           Display a warning message if the Form is invalid AND was touched. 
+           Display a warning message below each input if it's invalid.
+
+           Upon submitting the form, you should simply print the Value of the Form to the Console.
+           Optionally, display it in your template.
+      -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Form Data</h3>
+      <p>Email: {{ emailAddr }}</p>
+      <p>Password: {{ pwd }}</p>
+      <p>Subscription: {{ subscription }}</p>
+    </div>
+  </div>
+</div>
